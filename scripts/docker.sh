@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker run -it --rm -v .:/workspace -w /workspace hakarlsson/riscv-picolibc
+podman run -it --rm -v .:/workspace:Z -w /workspace hakarlsson/riscv-picolibc
