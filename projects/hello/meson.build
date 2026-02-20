@@ -38,6 +38,7 @@ run_target(
 		'-machine', 'virt',
 		'-bios', 'none',
 		'-kernel', s3k_elf.full_path(),
+    '-plugin', '/workspace/qemu_timing_plugin/target/release/libqemu_timing_plugin.so',
 		'-nographic',
 		'-m', '1G',
 		'-icount', '1',
