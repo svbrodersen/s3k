@@ -49,6 +49,7 @@ run_target(
 		'-bios', 'none',
 		'-kernel', s3k_elf.full_path(),
 		'-nographic',
+    '-plugin', '/workspace/qemu_timing_plugin/target/release/libqemu_timing_plugin.so',
 		'-m', '1G',
 		'-icount', '1',
 		'-device', 'loader,file=' + app1_elf.full_path(),
