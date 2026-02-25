@@ -38,6 +38,22 @@ run_target(
 		'-machine', 'virt',
 		'-bios', 'none',
 		'-kernel', s3k_elf.full_path(),
+		'-nographic',
+		'-m', '1G',
+		'-icount', '1',
+		'-device', 'loader,file=' + app1_elf.full_path(),
+		'-device', 'loader,addr=0x90000000,cpu-num=0',
+	],
+	depends : [s3k_elf, app1_elf],
+)
+
+run_target(
+	'qemu-run-plugin',
+	command: [
+		qemu_system_riscv64,
+		'-machine', 'virt',
+		'-bios', 'none',
+		'-kernel', s3k_elf.full_path(),
     '-plugin', '/workspace/qemu_timing_plugin/target/release/libqemu_timing_plugin.so',
 		'-nographic',
 		'-m', '1G',
