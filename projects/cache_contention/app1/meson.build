@@ -9,6 +9,8 @@ app1_elf = executable(
 	) + app1_platform_uart,
 	c_args: [
 		'-specs=picolibc.specs',
+    '-O0',
+    '-g',
 	],
 	link_args: [
 		'-nostartfiles',

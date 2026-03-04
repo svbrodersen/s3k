@@ -4,6 +4,7 @@ project('cache_contention', 'c',
 	default_options: [
 		'buildtype=debugoptimized',
 		'c_std=gnu11',
+    'debug=true',
 	]
 )
 
@@ -40,7 +41,7 @@ run_target(
 		'-bios', 'none',
 		'-kernel', s3k_elf.full_path(),
 		'-nographic',
-    '-plugin', '/workspace/qemu_timing_plugin/target/release/libqemu_timing_plugin.so',
+		'-plugin', '/workspace/src/qemu_timing_plugin/target/release/libqemu_timing_plugin.so,dcachesize=4096',
 		'-m', '1G',
 		'-icount', '1',
 		'-device', 'loader,file=' + app1_elf.full_path(),
