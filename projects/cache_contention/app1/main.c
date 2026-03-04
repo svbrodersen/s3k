@@ -50,7 +50,7 @@ int main(void)
 	}
 
 	printf("App 1 test finished\n");
-	while(1) {
-		s3k_sync();
-	}
+  s3k_mon_suspend(8);
+  s3k_mon_suspend(0);
+  s3k_sync();
 }

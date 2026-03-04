@@ -41,4 +41,5 @@ void kernel_init(void)
 
 void temporal_fence(void)
 {
+  __asm__ __volatile__("addi x0, x0, 11");
 }
