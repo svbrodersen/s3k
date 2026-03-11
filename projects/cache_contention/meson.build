@@ -34,6 +34,25 @@ run_target(
 )
 
 run_target(
+	'qemu-debug',
+	command: [
+		qemu_system_riscv64,
+		'-machine', 'virt',
+		'-bios', 'none',
+		'-kernel', s3k_elf.full_path(),
+		'-nographic',
+		'-m', '1G',
+		'-icount', '1',
+		'-device', 'loader,file=' + app1_elf.full_path(),
+		'-device', 'loader,file=' + app2_elf.full_path(),
+		'-device', 'loader,addr=0x90000000,cpu-num=0',
+    '-s', '-S'
+	],
+	depends : [s3k_elf, app1_elf, app2_elf],
+)
+
+
+run_target(
 	'qemu-run-plugin',
 	command: [
 		qemu_system_riscv64,
@@ -41,7 +60,7 @@ run_target(
 		'-bios', 'none',
 		'-kernel', s3k_elf.full_path(),
 		'-nographic',
-		'-plugin', '/workspace/src/qemu_timing_plugin/target/release/libqemu_timing_plugin.so,dcachesize=4096',
+		'-plugin', '/workspace/src/qemu_timing_plugin/target/release/libqemu_timing_plugin.so,dcachesize=65536,icachesize=65536',
 		'-m', '1G',
 		'-icount', '1',
 		'-device', 'loader,file=' + app1_elf.full_path(),
